@@ -2,32 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NetworkController : NetworkManager
 {
 
-	public void StartupHost()
+    Text ipAddressText;
+
+    public void StartupHost()
     {
         SetPort();
-
         singleton.StartHost();
-        Debug.Log(singleton.serverBindToIP);
     }
 
     public void JoinGame()
     {
-        SetIPAddress();
+        SetIPAddress(ipAddressText.text);
         SetPort();
         singleton.StartClient();
     }
 
-    void SetIPAddress()
+    public void Disconnect()
     {
-        singleton.networkAddress = "";
+        singleton.client.Disconnect();
+        singleton.StopServer();
+    }
+
+    void SetIPAddress(string ipAddress)
+    {
+        singleton.networkAddress = ipAddress;
     }
 
     void SetPort()
     {
         singleton.networkPort = 7777;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += NextSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= NextSceneLoaded;
+    }
+
+    void NextSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "MainMenuScene")
+        {
+            GameObject tempGO = GameObject.Find("MainMenu");
+            tempGO.GetComponent<MainMenuActions>().networkManager = this;
+            tempGO.GetComponent<MainMenuActions>().UpdateMPButtonsListiners();
+            ipAddressText = tempGO.GetComponent<MainMenuActions>().ipAddressText;
+        }
+        else
+        {
+            GameObject.Find("GameMenu").GetComponent<GameMenuActions>().networkManager = this;
+        }
     }
 }

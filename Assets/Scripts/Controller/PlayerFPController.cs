@@ -45,10 +45,6 @@ public class PlayerFPController : NetworkBehaviour
             TPCam.GetComponent<Camera>().enabled = false;
             FPCam.GetComponent<Camera>().enabled = false;
         }
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
     }
 	
 	
@@ -93,12 +89,6 @@ public class PlayerFPController : NetworkBehaviour
         }
 
         animator.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
-
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
 
         if (Input.GetKeyDown(KeyCode.X))
             crouching = !crouching;
