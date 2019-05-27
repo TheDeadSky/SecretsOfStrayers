@@ -1257,7 +1257,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 778162a21cc8fda4ea88bfa5a090b407, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1274,6 +1274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9323a0d4358fc439b9bfd5ed6127b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  force: 1000
+  maxSpeed: 5
+  maxSlape: 70
   target: {fileID: 4374666273639956}
   viewMode: 0
   FPCam: {fileID: 1663833150010916}

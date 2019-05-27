@@ -38,11 +38,6 @@ public class GameMenuActions : MonoBehaviour
         SwitchGameMenu();
     }
 
-    public void Exit()
-    {
-        
-    }
-
     public void ShowCursor()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -63,11 +58,13 @@ public class GameMenuActions : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 gameMenuPanel.SetActive(false);
+                gameMenuShowed = false;
                 break;
             case false:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 gameMenuPanel.SetActive(true);
+                gameMenuShowed = true;
                 break;
         }
     }

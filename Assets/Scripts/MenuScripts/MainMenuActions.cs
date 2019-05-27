@@ -28,7 +28,7 @@ public class MainMenuActions : MonoBehaviour
     /// </summary>
     public void SinglePlayer()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        
     }
 
     /// <summary>

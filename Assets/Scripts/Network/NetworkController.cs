@@ -12,6 +12,7 @@ public class NetworkController : NetworkManager
 
     public void StartupHost()
     {
+        NetworkServer.Reset();
         SetPort();
         singleton.StartHost();
     }
@@ -25,8 +26,8 @@ public class NetworkController : NetworkManager
 
     public void Disconnect()
     {
-        singleton.client.Disconnect();
         singleton.StopServer();
+        singleton.client.Disconnect();
     }
 
     void SetIPAddress(string ipAddress)
