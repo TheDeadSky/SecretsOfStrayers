@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace Controller
 {
-    public class HumanIK : NetworkBehaviour
+    public class HumanIK : MonoBehaviour
     {
         Animator anim;
         Vector3 leftFootPos, leftFootIKPos, rightFootPos, rightFootIKPos;
@@ -37,7 +36,7 @@ namespace Controller
         public bool useProIKFeature = false;
         public bool showSolverDebug = false;
 
-        private PlayerController pController;
+        private PlayerStates pController;
 
         [Range(-100, 100)]
         public float bpos = 0f;
@@ -45,7 +44,7 @@ namespace Controller
         void Start()
         {
             anim = GetComponent<Animator>();
-            pController = GetComponent<PlayerController>();
+            pController = GetComponent<PlayerStates>();
         }
 
         /// <summary>
@@ -76,11 +75,10 @@ namespace Controller
 
             Camera cam = null;
 
-            if (isLocalPlayer)
-            {
-                cam = pController.FPCam.GetComponent<Camera>();
-                anim.SetLookAtPosition(cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 3)));
-            }
+            
+            cam = pController.FPCam.GetComponent<Camera>();
+            anim.SetLookAtPosition(cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 3)));
+            
 
             MovePelvisHeight();
 

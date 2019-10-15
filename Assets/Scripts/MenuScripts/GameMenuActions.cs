@@ -17,7 +17,6 @@ public class GameMenuActions : MonoBehaviour
 
 	void Start ()
     {
-        exitButton.GetComponent<Button>().onClick.AddListener(networkManager.Disconnect);
         HideCursor();
         if(gameMenuPanel != null)
         {

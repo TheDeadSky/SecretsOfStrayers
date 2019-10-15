@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace Controller
 {
-    [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(Rigidbody))]
-    public class PlayerController : MonoBehaviour
+    public enum ViewMode { FPerson, TPerson };
+
+    public class PlayerStates : MonoBehaviour
     {
+
         public float force = 1000f;
         public float maxSpeed = 5f;
         public float maxSlape = 70f;
@@ -33,12 +34,17 @@ namespace Controller
         Transform cameraFPT;
 
         bool isGrounded = true;
-        bool running = true;
-        bool crouching = false;
+        bool alwaysRun = true;
+        bool alwaysCrouch = false;
+        bool sprinting = false;
 
         Rigidbody rb;
 
-        Vector2 inputDir;
+        public void SwitchAlwaysCrouch() { alwaysCrouch = !alwaysCrouch; }
+        public void SwitchAlwaysRun() { alwaysRun = !alwaysRun; }
+
+        [Header("DEBUG")]
+        public Vector3 movementDirectSpeed;
 
         void Start()
         {
@@ -50,94 +56,85 @@ namespace Controller
             rb = GetComponent<Rigidbody>();
         }
 
-
-        void Update()
+        void MovementAnimation(Vector2 inputDir)
         {
-
-            if (Input.GetKeyDown(KeyCode.F))
-                ViewModeSwitch();
-
-            if (Input.GetKeyDown(KeyCode.CapsLock))
-            {
-                running = !running;
-            }
-
-            bool sprinting = Input.GetKey(KeyCode.LeftShift);
-
-            Jump();
-            Crouch();
-
             float inputY = 0;
             float inputX = 0;
 
-            
-
             if (inputDir.y > 0)
             {
-                inputY = ((running) ? 1 : 0.5f) * inputDir.magnitude;
+                inputY = ((alwaysRun) ? 1 : 0.5f) * inputDir.magnitude;
             }
             else if (inputDir.y < 0)
             {
-                inputY = ((running) ? -1 : -0.5f) * inputDir.magnitude;
+                inputY = ((alwaysRun) ? -1 : -0.5f) * inputDir.magnitude;
             }
 
             if (inputDir.x > 0)
             {
-                inputX = (running) ? 1 : 0.5f * inputDir.magnitude;
+                inputX = (alwaysRun) ? 1 : 0.5f * inputDir.magnitude;
             }
-            else if(inputDir.x < 0)
+            else if (inputDir.x < 0)
             {
-                inputX = (running) ? -1 : -0.5f * inputDir.magnitude;
+                inputX = (alwaysRun) ? -1 : -0.5f * inputDir.magnitude;
             }
 
-            inputY = (sprinting && !crouching) ? 1.5f * inputDir.magnitude : inputY;
+            inputY = (sprinting && !alwaysCrouch) ? 1.5f * inputDir.magnitude : inputY;
 
             animator.SetFloat("InputY", inputY, speedSmoothTime, Time.deltaTime);
             animator.SetFloat("InputX", inputX, speedSmoothTime, Time.deltaTime);
-
-            if (Input.GetKeyDown(KeyCode.C))
-                crouching = !crouching;
         }
 
-        void FixedUpdate()
+        public void SwitchSprinting(bool s)
         {
-            inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            CameraLook();
-            MoveInput();
-        }
-
-        void MoveInput()
-        {
-            Vector2 horizontalMovement = new Vector2(rb.velocity.x, rb.velocity.z);
-            if(horizontalMovement.magnitude > maxSpeed)
+            sprinting = s;
+            
+            if(s == true)
             {
-                horizontalMovement = horizontalMovement.normalized;
-                horizontalMovement *= maxSpeed;
+                currentSpeed = Mathf.SmoothDamp(currentSpeed, maxSpeed, ref speedSmoothVelocity, Time.deltaTime);
+            }
+            else if(alwaysRun && !alwaysCrouch)
+            {
+                currentSpeed = Mathf.SmoothDamp(currentSpeed, maxSpeed - 3, ref speedSmoothVelocity, Time.deltaTime);
+            }
+            else
+            {
+                currentSpeed = Mathf.SmoothDamp(currentSpeed, maxSpeed - 5, ref speedSmoothVelocity, speedSmoothTime);
+            }
+        }
+
+        public void MoveInput(Vector2 inputDir)
+        {
+            Vector3 movement = new Vector3(inputDir.x, 0, inputDir.y);
+
+            if (isGrounded)
+            {
+                movementDirectSpeed = transform.position + transform.TransformDirection(movement) * currentSpeed * Time.deltaTime;
+                rb.MovePosition(movementDirectSpeed);
             }
 
-            rb.velocity = new Vector3(horizontalMovement.x, rb.velocity.y, horizontalMovement.y);
-
-            if(isGrounded)
-                rb.AddRelativeForce(inputDir.x * force, 0, inputDir.y * force);
-
+            MovementAnimation(inputDir);
         }
 
-        void CameraLook()
+        public void CameraLook()
         {
             float targetRotation = cameraFPT.eulerAngles.y;
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
         }
 
-        void Jump()
+        public void Jump(Vector2 inputDir)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            if(isGrounded)
             {
-                rb.AddForce(0, 10000, 0);
+                if(inputDir != Vector2.zero)
+                    rb.AddForce(transform.TransformDirection(inputDir.x, 1, inputDir.y) * currentSpeed * 3000);
+                else
+                    rb.AddForce(transform.up * 10000);
                 animator.SetTrigger("Jump");
             }
         }
 
-        void ViewModeSwitch()
+        public void ViewModeSwitch()
         {
             switch (viewMode)
             {
@@ -154,9 +151,9 @@ namespace Controller
             }
         }
 
-        void Crouch()
+        public void Crouch(bool c)
         {
-            if (Input.GetKey(KeyCode.LeftControl) || crouching)
+            if (c || alwaysCrouch)
             {
                 float crouch = 1 * Mathf.SmoothDamp(animator.GetFloat("Crouch"), 1f, ref crouchSmoothTime, Time.deltaTime);
                 GetComponent<CapsuleCollider>().height = 1.15f;
@@ -172,9 +169,9 @@ namespace Controller
 
         void OnCollisionStay(Collision collision)
         {
-            foreach(ContactPoint con in collision.contacts)
+            foreach (ContactPoint con in collision.contacts)
             {
-                if(Vector3.Angle(con.normal, Vector3.up) < maxSlape)
+                if (Vector3.Angle(con.normal, Vector3.up) < maxSlape)
                 {
                     isGrounded = true;
                 }
@@ -189,3 +186,4 @@ namespace Controller
         }
     }
 }
+
