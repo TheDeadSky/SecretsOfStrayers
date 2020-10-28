@@ -6,23 +6,26 @@ namespace Controller
 {
     public class HumanIK : MonoBehaviour
     {
-        Animator anim;
-        Vector3 leftFootPos, leftFootIKPos, rightFootPos, rightFootIKPos;
-        Quaternion leftFootIKRot, rightFootIKRot;
-        float leftFootWeight, rightFootWeight;
-        float lastPelvisPosY, lastRFootPosY, lastLFootPosY;
+        private Animator anim;
+        private Vector3 leftFootPos, leftFootIKPos, rightFootPos, rightFootIKPos;
+        private Quaternion leftFootIKRot, rightFootIKRot;
+        private float leftFootWeight, rightFootWeight;
+        private float lastPelvisPosY, lastRFootPosY, lastLFootPosY;
+        private Vector3 lastLookupPosition;
 
         [Header("Head Look IK")]
-        public float lookIKWeight;
-        public float eyesWeight;
-        public float headWeight;
-        public float bodyWeight;
-        public float clampWeight;
+
+        [SerializeField] private float lookIKWeight;
+        [SerializeField] private float eyesWeight;
+        [SerializeField] private float headWeight;
+        [SerializeField] private float bodyWeight;
+        [SerializeField] private float clampWeight;
 
         //[SerializeField] private Transform targetTransform;
 
         [Header("Feet Grounder")]
-        public bool enableFeetIK = true;
+
+        [SerializeField] private bool enableFeetIK = true;
         [Range(0, 2)] [SerializeField] private float heightFromGroundRaycast = 1.14f;
         [Range(0, 2)] [SerializeField] private float raycastDownDistance = 1.5f;
         [SerializeField] private LayerMask environmentLayer;
@@ -30,31 +33,31 @@ namespace Controller
         [Range(0, 1)] [SerializeField] private float pelvisUpDownSpeed = 0.25f;
         [Range(0, 1)] [SerializeField] private float feetToIKPosSpeed = 0.5f;
 
-        public string lFootAnimVarName = "LeftFoot";
-        public string rFootAnimVarName = "RightFoot";
+        //[SerializeField] private string lFootAnimVarName = "LeftFoot";
+        //[SerializeField] private string rFootAnimVarName = "RightFoot";
 
-        public bool useProIKFeature = false;
-        public bool showSolverDebug = false;
+        [SerializeField] private bool useProIKFeature = false;
+        [SerializeField] private bool showSolverDebug = false;
 
-        private PlayerStates pController;
+        [SerializeField] private PlayerStates playerStates;
 
-        [Range(-100, 100)]
-        public float bpos = 0f;
+        [Range(-100, 100)] [SerializeField] private float bpos = 0f;
 
-        void Start()
+        private void Start()
         {
             anim = GetComponent<Animator>();
-            pController = GetComponent<PlayerStates>();
+            playerStates = GetComponent<PlayerStates>();
         }
 
         /// <summary>
         /// Updating the AdjustFeetTarget method and also find the position
         /// of each foot inside our Solver Position
         /// </summary>
-        void FixedUpdate()
+        private void FixedUpdate()
         {
-            if (enableFeetIK == false) { return; }
-            if (anim == null) { return; }
+            if (enableFeetIK == false) return;
+            if (anim == null) return;
+            if (GameMenuActions.GamePaused) return;
 
             AdjustFeetTarget(ref rightFootPos, HumanBodyBones.RightFoot);
             AdjustFeetTarget(ref leftFootPos, HumanBodyBones.LeftFoot);
@@ -64,21 +67,24 @@ namespace Controller
             FeetPosSolver(leftFootPos, ref leftFootIKPos, ref leftFootIKRot); // handle the solver for left foot
         }
 
-        void OnAnimatorIK(int layerIndex)
+        private void OnAnimatorIK(int layerIndex)
         {
-            if (enableFeetIK == false) { return; }
-            if (anim == null) { return; }
+            if (enableFeetIK == false) return;
+            if (anim == null) return;
+            //if (GameMenuActions.GamePaused) return;
 
             raycastDownDistance = anim.GetFloat("raycastDownDistance");
 
             anim.SetLookAtWeight(lookIKWeight, bodyWeight, headWeight, eyesWeight, clampWeight);
 
             Camera cam = null;
+            cam = playerStates.FPCam.GetComponent<Camera>();
 
+            if (!GameMenuActions.GamePaused)
+                lastLookupPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 3);
             
-            cam = pController.FPCam.GetComponent<Camera>();
-            anim.SetLookAtPosition(cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 3)));
-            
+            anim.SetLookAtPosition(cam.ScreenToWorldPoint(lastLookupPosition));
+
 
             MovePelvisHeight();
 
@@ -109,7 +115,7 @@ namespace Controller
 
         #region Feet Grounder Methods
 
-        void MoveFeetToIKPoint(AvatarIKGoal foot, Vector3 positionIKHolder, Quaternion rotationIKHolder, ref float lastFootPositionY)
+        private void MoveFeetToIKPoint(AvatarIKGoal foot, Vector3 positionIKHolder, Quaternion rotationIKHolder, ref float lastFootPositionY)
         {
             Vector3 targetIKPosition = anim.GetIKPosition(foot);
 

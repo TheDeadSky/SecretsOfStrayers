@@ -10,7 +10,10 @@ public class GameMenuActions : MonoBehaviour
     public GameObject gameMenuPanel;
 
     public GameObject exitButton;
-    public NetworkController networkManager;
+
+    public static bool GamePaused { get { return gamePaused; } }
+
+    private static bool gamePaused = false;
 
     private bool isCursorShowed = true;
     private bool gameMenuShowed = false;
@@ -58,12 +61,14 @@ public class GameMenuActions : MonoBehaviour
                 Cursor.visible = false;
                 gameMenuPanel.SetActive(false);
                 gameMenuShowed = false;
+                gamePaused = false;
                 break;
             case false:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 gameMenuPanel.SetActive(true);
                 gameMenuShowed = true;
+                gamePaused = true;
                 break;
         }
     }

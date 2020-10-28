@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 namespace Controller
@@ -11,40 +9,43 @@ namespace Controller
 
         Vector2 inputDir;
 
-        PlayerStates pstates;
+        PlayerStates playerStates;
 
         void Start()
         {
-            pstates = GetComponent<PlayerStates>();
+            playerStates = GetComponent<PlayerStates>();
         }
 
         void Update()
         {
-
+            if (GameMenuActions.GamePaused)
+                return;
             if (Input.GetKeyDown(KeyCode.F))
-                pstates.ViewModeSwitch();
+                playerStates.ViewModeSwitch();
 
             if (Input.GetKeyDown(KeyCode.CapsLock))
             {
-                pstates.SwitchAlwaysRun();
+                playerStates.SwitchAlwaysRun();
             }
 
-            pstates.SwitchSprinting(Input.GetKey(KeyCode.LeftShift));
+            playerStates.SwitchSprinting(Input.GetKey(KeyCode.LeftShift));
 
             if (Input.GetKeyDown(KeyCode.Space))
-                pstates.Jump(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+                playerStates.Jump(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
 
-            pstates.Crouch((bool)Input.GetKey(KeyCode.LeftControl));
+            playerStates.Crouch((bool)Input.GetKey(KeyCode.LeftControl));
 
             if (Input.GetKeyDown(KeyCode.C))
-                pstates.SwitchAlwaysCrouch();
+                playerStates.SwitchAlwaysCrouch();
 
-            pstates.CameraLook();
+            playerStates.CameraLook();
         }
 
         void FixedUpdate()
         {
-            pstates.MoveInput(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+            if (GameMenuActions.GamePaused)
+                return;
+            playerStates.MoveInput(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
         }
     }
 }

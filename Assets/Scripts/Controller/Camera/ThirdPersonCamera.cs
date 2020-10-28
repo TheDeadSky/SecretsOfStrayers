@@ -26,6 +26,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 
 	void LateUpdate ()
     {
+        if (GameMenuActions.GamePaused)
+            return;
+
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 

@@ -16,13 +16,15 @@ public class FirstPersonCamera : MonoBehaviour {
     Vector3 currentRotation;
 
 	void LateUpdate ()
-    { 
+    {
+        if (GameMenuActions.GamePaused)
+            return;
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         pitch = Mathf.Clamp(pitch, pitchClamp.x, pitchClamp.y);
         
 		Vector3 targetRotation = new Vector3(pitch, yaw);
-		transform.eulerAngles = targetRotation;        
+        transform.eulerAngles = targetRotation;
 	}
 }

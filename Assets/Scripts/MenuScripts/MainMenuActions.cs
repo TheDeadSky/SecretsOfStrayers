@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class MainMenuActions : MonoBehaviour
 {
 
-    public NetworkController networkManager;
-
     [Header("Multiplayer UI Objects")]
     public GameObject hostButton;
     public GameObject joinButton;
@@ -59,8 +57,8 @@ public class MainMenuActions : MonoBehaviour
 
     public void UpdateMPButtonsListiners()
     {
-        hostButton.GetComponent<Button>().onClick.AddListener(networkManager.StartupHost);
-        joinButton.GetComponent<Button>().onClick.AddListener(networkManager.JoinGame);
+        //hostButton.GetComponent<Button>().onClick.AddListener(networkManager.StartupHost);
+        //joinButton.GetComponent<Button>().onClick.AddListener(networkManager.JoinGame);
     }
 }
 

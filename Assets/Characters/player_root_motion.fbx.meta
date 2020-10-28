@@ -1,103 +1,302 @@
 fileFormatVersion: 2
 guid: 9eac834302f5a7848b7c309994e9dc37
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Armature
-    100002: Cube
-    100004: Foot.L
-    100006: Foot.R
-    100008: Hand.L
-    100010: Hand.L_end
-    100012: Hand.R
-    100014: Hand.R_end
-    100016: Head
-    100018: Head_end
-    100020: Hip
-    100022: LegIK.L
-    100024: LegIK.L_end
-    100026: LegIK.R
-    100028: LegIK.R_end
-    100030: LowerArm.L
-    100032: LowerArm.R
-    100034: LowerLeg.L
-    100036: LowerLeg.R
-    100038: //RootNode
-    100040: PoleTarget.L
-    100042: PoleTarget.L_end
-    100044: PoleTarget.R
-    100046: PoleTarget.R_end
-    100048: Root
-    100050: Spine
-    100052: Toes.L
-    100054: Toes.L_end
-    100056: Toes.R
-    100058: Toes.R_end
-    100060: UpperArm.L
-    100062: UpperArm.R
-    100064: UpperLeg.L
-    100066: UpperLeg.R
-    400000: Armature
-    400002: Cube
-    400004: Foot.L
-    400006: Foot.R
-    400008: Hand.L
-    400010: Hand.L_end
-    400012: Hand.R
-    400014: Hand.R_end
-    400016: Head
-    400018: Head_end
-    400020: Hip
-    400022: LegIK.L
-    400024: LegIK.L_end
-    400026: LegIK.R
-    400028: LegIK.R_end
-    400030: LowerArm.L
-    400032: LowerArm.R
-    400034: LowerLeg.L
-    400036: LowerLeg.R
-    400038: //RootNode
-    400040: PoleTarget.L
-    400042: PoleTarget.L_end
-    400044: PoleTarget.R
-    400046: PoleTarget.R_end
-    400048: Root
-    400050: Spine
-    400052: Toes.L
-    400054: Toes.L_end
-    400056: Toes.R
-    400058: Toes.R_end
-    400060: UpperArm.L
-    400062: UpperArm.R
-    400064: UpperLeg.L
-    400066: UpperLeg.R
-    2100000: Material
-    2100002: Material.001
-    2100004: Material.002
-    4300000: Cube
-    7400000: standart_human_crouch_idle
-    7400002: standart_human_crouch_run
-    7400004: standart_human_crouch_run_strafe_right
-    7400006: standart_human_crouch_walk
-    7400008: standart_human_crouch_walk_strafe_right
-    7400010: standart_human_idle
-    7400012: standart_human_jump_front
-    7400014: standart_human_jump_in_place
-    7400016: standart_human_run
-    7400018: standart_human_run_strafe_right
-    7400020: standart_human_sprint
-    7400022: standart_human_T-Pose
-    7400024: standart_human_walk
-    7400026: standart_human_walk_strafe_left
-    7400028: standart_human_walk_strafe_right
-    7400030: standart_human_run_strafe_left
-    7400032: standart_human_crouch_walk_strafe_left
-    7400034: standart_human_crouch_run_strafe_left
-    9500000: //RootNode
-    13700000: Cube
-  externalObjects: {}
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Armature
+  - first:
+      1: 100002
+    second: Cube
+  - first:
+      1: 100004
+    second: Foot.L
+  - first:
+      1: 100006
+    second: Foot.R
+  - first:
+      1: 100008
+    second: Hand.L
+  - first:
+      1: 100010
+    second: Hand.L_end
+  - first:
+      1: 100012
+    second: Hand.R
+  - first:
+      1: 100014
+    second: Hand.R_end
+  - first:
+      1: 100016
+    second: Head
+  - first:
+      1: 100018
+    second: Head_end
+  - first:
+      1: 100020
+    second: Hip
+  - first:
+      1: 100022
+    second: LegIK.L
+  - first:
+      1: 100024
+    second: LegIK.L_end
+  - first:
+      1: 100026
+    second: LegIK.R
+  - first:
+      1: 100028
+    second: LegIK.R_end
+  - first:
+      1: 100030
+    second: LowerArm.L
+  - first:
+      1: 100032
+    second: LowerArm.R
+  - first:
+      1: 100034
+    second: LowerLeg.L
+  - first:
+      1: 100036
+    second: LowerLeg.R
+  - first:
+      1: 100038
+    second: //RootNode
+  - first:
+      1: 100040
+    second: PoleTarget.L
+  - first:
+      1: 100042
+    second: PoleTarget.L_end
+  - first:
+      1: 100044
+    second: PoleTarget.R
+  - first:
+      1: 100046
+    second: PoleTarget.R_end
+  - first:
+      1: 100048
+    second: Root
+  - first:
+      1: 100050
+    second: Spine
+  - first:
+      1: 100052
+    second: Toes.L
+  - first:
+      1: 100054
+    second: Toes.L_end
+  - first:
+      1: 100056
+    second: Toes.R
+  - first:
+      1: 100058
+    second: Toes.R_end
+  - first:
+      1: 100060
+    second: UpperArm.L
+  - first:
+      1: 100062
+    second: UpperArm.R
+  - first:
+      1: 100064
+    second: UpperLeg.L
+  - first:
+      1: 100066
+    second: UpperLeg.R
+  - first:
+      4: 400000
+    second: Armature
+  - first:
+      4: 400002
+    second: Cube
+  - first:
+      4: 400004
+    second: Foot.L
+  - first:
+      4: 400006
+    second: Foot.R
+  - first:
+      4: 400008
+    second: Hand.L
+  - first:
+      4: 400010
+    second: Hand.L_end
+  - first:
+      4: 400012
+    second: Hand.R
+  - first:
+      4: 400014
+    second: Hand.R_end
+  - first:
+      4: 400016
+    second: Head
+  - first:
+      4: 400018
+    second: Head_end
+  - first:
+      4: 400020
+    second: Hip
+  - first:
+      4: 400022
+    second: LegIK.L
+  - first:
+      4: 400024
+    second: LegIK.L_end
+  - first:
+      4: 400026
+    second: LegIK.R
+  - first:
+      4: 400028
+    second: LegIK.R_end
+  - first:
+      4: 400030
+    second: LowerArm.L
+  - first:
+      4: 400032
+    second: LowerArm.R
+  - first:
+      4: 400034
+    second: LowerLeg.L
+  - first:
+      4: 400036
+    second: LowerLeg.R
+  - first:
+      4: 400038
+    second: //RootNode
+  - first:
+      4: 400040
+    second: PoleTarget.L
+  - first:
+      4: 400042
+    second: PoleTarget.L_end
+  - first:
+      4: 400044
+    second: PoleTarget.R
+  - first:
+      4: 400046
+    second: PoleTarget.R_end
+  - first:
+      4: 400048
+    second: Root
+  - first:
+      4: 400050
+    second: Spine
+  - first:
+      4: 400052
+    second: Toes.L
+  - first:
+      4: 400054
+    second: Toes.L_end
+  - first:
+      4: 400056
+    second: Toes.R
+  - first:
+      4: 400058
+    second: Toes.R_end
+  - first:
+      4: 400060
+    second: UpperArm.L
+  - first:
+      4: 400062
+    second: UpperArm.R
+  - first:
+      4: 400064
+    second: UpperLeg.L
+  - first:
+      4: 400066
+    second: UpperLeg.R
+  - first:
+      21: 2100000
+    second: Material
+  - first:
+      21: 2100002
+    second: Material.001
+  - first:
+      21: 2100004
+    second: Material.002
+  - first:
+      43: 4300000
+    second: Cube
+  - first:
+      74: 7400000
+    second: standart_human_crouch_idle
+  - first:
+      74: 7400002
+    second: standart_human_crouch_run
+  - first:
+      74: 7400004
+    second: standart_human_crouch_run_strafe_right
+  - first:
+      74: 7400006
+    second: standart_human_crouch_walk
+  - first:
+      74: 7400008
+    second: standart_human_crouch_walk_strafe_right
+  - first:
+      74: 7400010
+    second: standart_human_idle
+  - first:
+      74: 7400012
+    second: standart_human_jump_front
+  - first:
+      74: 7400014
+    second: standart_human_jump_in_place
+  - first:
+      74: 7400016
+    second: standart_human_run
+  - first:
+      74: 7400018
+    second: standart_human_run_strafe_right
+  - first:
+      74: 7400020
+    second: standart_human_sprint
+  - first:
+      74: 7400022
+    second: standart_human_T-Pose
+  - first:
+      74: 7400024
+    second: standart_human_walk
+  - first:
+      74: 7400026
+    second: standart_human_walk_strafe_left
+  - first:
+      74: 7400028
+    second: standart_human_walk_strafe_right
+  - first:
+      74: 7400030
+    second: standart_human_run_strafe_left
+  - first:
+      74: 7400032
+    second: standart_human_crouch_walk_strafe_left
+  - first:
+      74: 7400034
+    second: standart_human_crouch_run_strafe_left
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Cube
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 0be92543553f13942ae67d45175a0927, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 355c2a430e5f95146ac79570a4b70836, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: f1f2120ee94e4254296d54bd41c15606, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -126,6 +325,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_crouch_idle
       takeName: Armature|standart_human_crouch_idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 39
       wrapMode: 0
@@ -179,6 +379,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_crouch_run
       takeName: Armature|standart_human_crouch_run
+      internalID: 0
       firstFrame: 0
       lastFrame: 21
       wrapMode: 0
@@ -232,6 +433,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_crouch_run_strafe_right
       takeName: Armature|standart_human_crouch_run_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -285,6 +487,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_crouch_walk
       takeName: Armature|standart_human_crouch_walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 31
       wrapMode: 0
@@ -338,6 +541,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_crouch_walk_strafe_right
       takeName: Armature|standart_human_crouch_walk_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 16
       wrapMode: 0
@@ -391,6 +595,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_idle
       takeName: Armature|standart_human_idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 59
       wrapMode: 0
@@ -444,6 +649,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_jump_front
       takeName: Armature|standart_human_jump_front
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -497,6 +703,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_jump_in_place
       takeName: Armature|standart_human_jump_in_place
+      internalID: 0
       firstFrame: 0
       lastFrame: 69
       wrapMode: 0
@@ -558,6 +765,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_run
       takeName: Armature|standart_human_run
+      internalID: 0
       firstFrame: 0
       lastFrame: 14
       wrapMode: 0
@@ -706,6 +914,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_run_strafe_right
       takeName: Armature|standart_human_run_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -759,6 +968,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_sprint
       takeName: Armature|standart_human_sprint
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -812,6 +1022,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_T-Pose
       takeName: Armature|standart_human_T-Pose
+      internalID: 0
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0
@@ -865,6 +1076,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_walk
       takeName: Armature|standart_human_walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -918,6 +1130,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_walk_strafe_right
       takeName: Armature|standart_human_walk_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -971,6 +1184,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_walk_strafe_left
       takeName: Armature|standart_human_walk_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -1024,6 +1238,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_run_strafe_left
       takeName: Armature|standart_human_run_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -1077,6 +1292,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_crouch_walk_strafe_left
       takeName: Armature|standart_human_crouch_walk_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 16
       wrapMode: 0
@@ -1130,6 +1346,7 @@ ModelImporter:
     - serializedVersion: 16
       name: standart_human_crouch_run_strafe_left
       takeName: Armature|standart_human_crouch_run_strafe
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -1187,6 +1404,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -1194,18 +1412,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -1214,10 +1433,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Hip
       humanName: Hips
@@ -1533,13 +1752,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: Root
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
